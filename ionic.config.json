@@ -1,0 +1,7 @@
+{
+  "name": "Duoc_Prueba1",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
