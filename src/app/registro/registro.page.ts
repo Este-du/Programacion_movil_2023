@@ -5,7 +5,7 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registro',
@@ -15,9 +15,10 @@ import { AlertController } from '@ionic/angular';
 export class RegistroPage implements OnInit {
 
   formularioRegistro: FormGroup;
-  
+
   constructor(public fb: FormBuilder,
-    public alertController: AlertController) {
+    public alertController: AlertController,
+    public navCtrl: NavController) {
     this.formularioRegistro = this.fb.group({
       'nombre': new FormControl("", Validators.required),
       'apellido': new FormControl("", Validators.required),
@@ -40,7 +41,7 @@ export class RegistroPage implements OnInit {
         message: 'Se deven llenar todos los datos',
         buttons: ['Aceptar']
       });
-  
+
       await alert.present();
       return;
     }
@@ -51,6 +52,9 @@ export class RegistroPage implements OnInit {
     }
 
     localStorage.setItem('usuario',JSON.stringify(usuario));
+
+    localStorage.setItem('ingresado','true');
+    this.navCtrl.navigateRoot('menu/inicio');
   }
 
 }
